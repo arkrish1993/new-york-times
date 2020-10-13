@@ -6,6 +6,8 @@
       <meta charset="UTF-8">
       <title>New York Times</title>
       <meta property="og:type" content="website"/>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Piazzolla&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
       <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="../lib/animate/animate.min.css">
       <link rel="stylesheet" href="css/common.css">
@@ -13,9 +15,33 @@
       <link rel="stylesheet" media="screen and (max-width: 600px)" href="css/low-resolution.css">
       <script src="script.js"></script>
    </head>
-   <body  onresize="closeNav()">
-      <div class="card animated fadeInDown">
-         Work in progress
-      </div>
+   <body>
+      <div class="container">
+         <div class="header row">
+             <div class="main">
+                 <div class="heading">New York Times</div>
+                 <!-- Search bar -->
+                 <div class="form-group has-search">
+                     <input type="text" class="form-control" placeholder="Search">
+                 </div>
+     
+             </div>
+         </div>
+         <div class="row">
+            <div class="card col-md-7">
+               <div id="featured" class="card-body">
+                 <div class="subheading">Featured</div>
+                 <div id="featured-data">Loading...</div>
+               </div>
+             </div>
+             <div class="card col-md-5">
+               <div id="latest" class="card-body">
+                 <div class="subheading">Latest</div>
+                 <div id="latest-data">Loading...</div>
+               </div>
+             </div>
+        </div>
+        
+     </div>
    </body>
 </html>
