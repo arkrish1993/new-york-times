@@ -18,30 +18,38 @@
    <body>
       <div class="container">
          <div class="header row">
-             <div class="main">
-                 <div class="heading">New York Times</div>
-                 <!-- Search bar -->
-                 <div class="form-group has-search">
-                     <input type="text" class="form-control" placeholder="Search">
-                 </div>
-     
-             </div>
+            <div class="main">
+               <div class="heading">New York Times</div>
+               <!-- Search bar -->
+               <div class="form-group has-search">
+                  <input type="text" class="form-control" placeholder="Search">
+               </div>
+            </div>
          </div>
          <div class="row">
             <div class="card col-md-7">
                <div id="featured" class="card-body">
-                 <div class="subheading">Featured</div>
-                 <div id="featured-data">Loading...</div>
+                  <div class="subheading">Featured</div>
+                  <div id="featured-data"></div>
                </div>
-             </div>
-             <div class="card col-md-5">
+               <div class="featured-loading loading show">
+                  <div class="ball"></div>
+                  <div class="ball"></div>
+                  <div class="ball"></div>
+               </div>
+            </div>
+            <div class="card col-md-5">
                <div id="latest" class="card-body">
-                 <div class="subheading">Latest</div>
-                 <div id="latest-data">Loading...</div>
+                  <div class="subheading">Latest</div>
+                  <div id="latest-data"></div>
                </div>
-             </div>
-        </div>
-        
-     </div>
+               <div class="latest-loading loading show">
+                  <div class="ball"></div>
+                  <div class="ball"></div>
+                  <div class="ball"></div>
+               </div>
+            </div>
+         </div>
+      </div>
    </body>
 </html>
