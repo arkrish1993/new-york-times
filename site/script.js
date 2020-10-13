@@ -23,7 +23,11 @@ fetch('https://api.nytimes.com/svc/topstories/v2/world.json?api-key=' + apiKey.g
 		return response.json();
 	})
 	.then(function (data) {
-		noOfPages = data.results.length / pageSize;
+        noOfPages = data.results.length / pageSize;
+        /**
+         * Since this particular api does not support pagination,
+         * implementation has been done this way. 
+         *  */ 
 		featuredEntries = data.results;
 		loadFeaturedContent();
 	})
@@ -48,7 +52,7 @@ function showFeatured(data, pageNo) {
 		var div = document.createElement('div');
 		div.classList.add('news', 'container');
 		div.innerHTML = `
-            <div class="news-title">${data[i].title}</div>
+            <div class="news-title" title="${data[i].title}">${data[i].title}</div>
             <p>
                 <img class="featured-image" src="${data[i].multimedia[4].url}"/>
                 <div class="news-content">${data[i].abstract}</div>
@@ -84,7 +88,7 @@ function showLatest(data) {
 		var div = document.createElement('div');
 		div.classList.add('latest-news', 'container');
 		div.innerHTML = `
-        <div class="news-title">${data.results[i].title}</div>
+        <div class="news-title" title="${data.results[i].title}">${data.results[i].title}</div>
         <div class="news-content">${data.results[i].abstract}</div>
         `;
 		mainContainer.appendChild(div);
@@ -105,3 +109,50 @@ window.addEventListener('scroll', () => {
 		loadFeaturedContent();
 	}
 });
+
+
+function filterContent() {
+    if (!event.target.value) {
+        currentPage = 1;
+        loadFeaturedContent();
+    } else {
+        showFilteredContent(event.target.value);
+    }
+}
+
+function filterContent() {
+	if (!event.target.value) {
+		currentPage = 1;
+		loadFeaturedContent();
+	} else {
+		showFilteredContent(event.target.value);
+	}
+}
+
+function showFilteredContent(filterValue) {
+	document.querySelector('.featured-loading').classList.add('show');
+	var mainContainer = document.getElementById('featured-data');
+	mainContainer.innerHTML = '';
+	var filtered = featuredEntries.filter((val) => {
+		return val.title.includes(filterValue);
+	});
+	var div = document.createElement('div');
+	if (!filtered.length) {
+		div.innerHTML = `
+        <div class="no-records">No records found...</div>
+        `;
+	} else {
+		div.classList.add('news', 'container');
+		for (var i = 0; i < filtered.length; i++) {
+			div.innerHTML = `
+                <div class="news-title" title="${filtered[i].title}">${filtered[i].title}</div>
+                <p>
+                    <img class="featured-image" src="${filtered[i].multimedia[4].url}"/>
+                    <div class="news-content">${filtered[i].abstract}</div>
+                </p>
+            `;
+		}
+	}
+	mainContainer.appendChild(div);
+	document.querySelector('.featured-loading').classList.remove('show');
+}

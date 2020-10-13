@@ -1,14 +1,10 @@
 body {
     font-family: 'Piazzolla', serif;
-    z-index: 1;
 }
 
 .header {
     background-color: black;
     color: white;
-    position: sticky;
-    top: 0vw;
-    z-index: 2;
 }
 
 .heading {
@@ -42,6 +38,10 @@ body {
 
 .news-title {
     font-size: 1.25vw;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .featured-image {
@@ -58,8 +58,6 @@ body {
 
 #latest-data {
     margin-top: 1vw;
-    height: 30vw;
-    overflow: auto;
 }
 
 .latest-news {
@@ -117,4 +115,8 @@ body {
 	50% {
 		transform: translateY(-10px);
 	}
+}
+
+.no-records {
+    margin-top: 1vw;
 }
