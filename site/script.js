@@ -7,6 +7,7 @@ var apiKey = {
 	}
 };
 
+var latestEntries = [];
 /**
  * Variables for enabling paging of Featured Content
  */
@@ -51,6 +52,8 @@ function showFeatured(data, pageNo) {
 	for (var i = 0; i < 3 * pageNo; i++) {
 		var div = document.createElement('div');
 		div.classList.add('news', 'container');
+        div.addEventListener('click', click);
+        div.id = 'featured' + '-' + i;
 		div.innerHTML = `
             <div class="news-title" title="${data[i].title}">${data[i].title}</div>
             <p>
@@ -71,8 +74,9 @@ fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=' + apiKey.ge
 		return response.json();
 	})
 	.then(function (data) {
-		document.querySelector('.latest-loading').classList.add('show');
-		showLatest(data);
+        document.querySelector('.latest-loading').classList.add('show');
+        latestEntries = data.results;
+		showLatest(latestEntries);
 	})
 	.catch(function (err) {
 		console.log('error: ' + err);
@@ -87,9 +91,11 @@ function showLatest(data) {
 	for (var i = 0; i < 9; i++) {
 		var div = document.createElement('div');
 		div.classList.add('latest-news', 'container');
+        div.addEventListener('click', click);
+        div.id = 'latest' + '-' + i;
 		div.innerHTML = `
-        <div class="news-title" title="${data.results[i].title}">${data.results[i].title}</div>
-        <div class="news-content">${data.results[i].abstract}</div>
+        <div class="news-title" title="${data[i].title}">${data[i].title}</div>
+        <div class="news-content">${data[i].abstract}</div>
         `;
 		mainContainer.appendChild(div);
 	}
@@ -110,7 +116,6 @@ window.addEventListener('scroll', () => {
 	}
 });
 
-
 function filterContent() {
     if (!event.target.value) {
         currentPage = 1;
@@ -129,21 +134,28 @@ function filterContent() {
 	}
 }
 
+/** 
+ * Function to filter the 'Featured' section
+ */
 function showFilteredContent(filterValue) {
 	document.querySelector('.featured-loading').classList.add('show');
 	var mainContainer = document.getElementById('featured-data');
 	mainContainer.innerHTML = '';
-	var filtered = featuredEntries.filter((val) => {
-		return val.title.includes(filterValue);
+	var filtered = featuredEntries.filter((entry) => {
+		return entry.title.includes(filterValue);
 	});
-	var div = document.createElement('div');
 	if (!filtered.length) {
+        var div = document.createElement('div');
 		div.innerHTML = `
         <div class="no-records">No records found...</div>
         `;
+        mainContainer.appendChild(div);
 	} else {
-		div.classList.add('news', 'container');
 		for (var i = 0; i < filtered.length; i++) {
+            var div = document.createElement('div');
+            div.classList.add('news', 'container');
+            div.addEventListener('click', click);
+            div.id = 'featured' + '-' + i;
 			div.innerHTML = `
                 <div class="news-title" title="${filtered[i].title}">${filtered[i].title}</div>
                 <p>
@@ -151,8 +163,44 @@ function showFilteredContent(filterValue) {
                     <div class="news-content">${filtered[i].abstract}</div>
                 </p>
             `;
+            mainContainer.appendChild(div);
 		}
 	}
-	mainContainer.appendChild(div);
 	document.querySelector('.featured-loading').classList.remove('show');
+}
+
+/** 
+ * Function to open overlay with details
+ */
+function click() {
+    var element = event.currentTarget.id.split('-');
+    var type = element[0];
+    var index = Number(element[1]);
+    var entry = (type === 'featured') ? featuredEntries[index]: latestEntries[index];
+    var mainContainer = document.getElementById('details-overlay');
+    mainContainer.innerHTML = '';
+    var div = document.createElement('div');
+    div.innerHTML = `
+    <div class="details-div">
+        <h2 class="details-header">Details</h2>
+        <h4 class="details-title" title="${entry.title}"><b>${entry.title}</b></h4>
+        <div class="details-byline">${entry.byline}</div>
+        <p>
+            <img class="details-image" src="${entry.multimedia[4].url}"/>
+            <div class="details-content">${entry.abstract}</div>
+        </p>
+    </div>
+    `;
+    mainContainer.appendChild(div);
+	document.getElementById("details").style.width = "100%";
+    document.body.style.overflow = 'hidden';
+	
+}
+
+/** 
+ * Function to close overlay with details
+ */
+function closeDetails() {
+	document.body.style.overflow = 'auto';
+	document.getElementById("details").style.width = "0%";
 }
