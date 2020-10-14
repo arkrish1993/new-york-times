@@ -1,5 +1,6 @@
 body {
     font-family: 'Piazzolla', serif;
+    transition: all 0.5s ease-in-out;
 }
 
 .header {
@@ -149,7 +150,7 @@ body {
 .overlay a.closebtn {
     padding: 1vw;
     text-decoration: none;
-    font-size: 4vw;
+    font-size: 3vw;
     color: black;
     display: block;
     transition: 0.3s;

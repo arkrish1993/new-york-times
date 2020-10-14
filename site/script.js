@@ -51,7 +51,7 @@ function showFeatured(data, pageNo) {
 	mainContainer.innerHTML = '';
 	for (var i = 0; i < 3 * pageNo; i++) {
 		var div = document.createElement('div');
-		div.classList.add('news', 'container');
+		div.classList.add('news', 'container', 'animated', 'fadeInDown');
         div.addEventListener('click', click);
         div.id = 'featured' + '-' + i;
 		div.innerHTML = `
@@ -90,7 +90,7 @@ function showLatest(data) {
 	mainContainer.innerHTML = '';
 	for (var i = 0; i < 9; i++) {
 		var div = document.createElement('div');
-		div.classList.add('latest-news', 'container');
+		div.classList.add('latest-news', 'container', 'animated', 'fadeInDown');
         div.addEventListener('click', click);
         div.id = 'latest' + '-' + i;
 		div.innerHTML = `
@@ -142,7 +142,9 @@ function showFilteredContent(filterValue) {
 	var mainContainer = document.getElementById('featured-data');
 	mainContainer.innerHTML = '';
 	var filtered = featuredEntries.filter((entry) => {
-		return entry.title.includes(filterValue);
+		let titleLC = entry.title.toLowerCase();
+		let filterLC = filterValue.toLowerCase();
+		return titleLC.includes(filterLC);
 	});
 	if (!filtered.length) {
         var div = document.createElement('div');
@@ -153,7 +155,7 @@ function showFilteredContent(filterValue) {
 	} else {
 		for (var i = 0; i < filtered.length; i++) {
             var div = document.createElement('div');
-            div.classList.add('news', 'container');
+            div.classList.add('news', 'container', 'animated', 'fadeInDown');
             div.addEventListener('click', click);
             div.id = 'featured' + '-' + i;
 			div.innerHTML = `
@@ -173,7 +175,12 @@ function showFilteredContent(filterValue) {
  * Function to open overlay with details
  */
 function click() {
-    var element = event.currentTarget.id.split('-');
+	var element = event.currentTarget.id.split('-');
+	/**
+	 * Current entry will have an ID which is of the form 'featured/latest'-index
+	 * eg: featured-1 means the entry at featuredEntries[1]
+	 * 	   latest-3 means the entry at latestEntries[3]	
+	 **/
     var type = element[0];
     var index = Number(element[1]);
     var entry = (type === 'featured') ? featuredEntries[index]: latestEntries[index];
