@@ -1,0 +1,182 @@
+body {
+    font-family: 'Piazzolla', serif;
+}
+
+.header {
+    background-color: black;
+    color: white;
+}
+
+.heading {
+    font-family: 'Pacifico', cursive;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.subheading {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.5vw;
+}
+
+.main {
+    width: 50%;
+    margin: 2vw auto;
+}
+
+.has-search {
+    margin-top: 2vw;
+    margin-bottom: 0;
+}
+
+.news {
+    box-shadow: 2px 2px lightgrey;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin-top: 1vw;
+    height: 15vw;
+    cursor: pointer;
+}
+
+.news-title {
+    font-size: 1.25vw;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.featured-image {
+    float: left;
+    margin-right: 1vw;
+    margin-top: 1vw;
+    height: 11vw;
+}
+
+.news-content {
+    font-size: 1vw;
+    padding-top: 1vw;
+}
+
+#latest-data {
+    margin-top: 1vw;
+}
+
+.latest-news {
+    box-shadow: 2px 2px lightgrey;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin-bottom: 1vw;
+    cursor: pointer;
+}
+
+.loading {
+	opacity: 0;
+	display: flex;
+	transform: translateX(-50%);
+	transition: opacity .3s ease-in;
+}
+
+.featured-loading {
+	position: fixed;
+	top: 50%;
+	left: 35%;
+}
+
+.latest-loading {
+	position: fixed;
+	top: 50%;
+	right: 20%;
+}
+
+.loading.show {
+	opacity: 1;
+}
+
+.ball {
+	background-color: #777;
+	border-radius: 50%;
+	margin: 5px;
+	height: 10px;
+	width: 10px;
+	animation: jump .5s ease-in infinite;
+}
+
+.ball:nth-of-type(2) {
+	animation-delay: 0.1s;
+}
+
+.ball:nth-of-type(3) {
+	animation-delay: 0.2s;
+}
+
+@keyframes jump {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.no-records {
+    margin-top: 1vw;
+}
+
+.overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	background-color: rgb(255, 255, 255) rgb(0, 0, 0);
+	background-color: rgba(255, 255, 255, 0.9);
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.overlay-content {
+	position: relative;
+    width: 100%;
+}
+
+.overlay a.closebtn {
+    padding: 1vw;
+    text-decoration: none;
+    font-size: 2vw;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+    font-family: 'Pacifico', cursive;
+    margin-left: 25%;
+}
+
+.overlay {
+	position: absolute;
+}
+
+.details-div {
+    border: 1px solid lightgray;
+    width: 50%;
+    margin-left: 25%;
+    box-shadow: 2px 2px lightgrey;
+    padding: 1vw;
+}
+
+.details-byline {
+    text-align: end;
+    font-style: italic;
+}
+
+.details-image {
+    height: 17vw;
+    margin-left: 25%;
+    margin-top: 1vw;
+}
+
+.details-header {
+    font-family: 'Pacifico', cursive;
+}

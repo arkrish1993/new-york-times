@@ -11,9 +11,8 @@
       <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="../lib/animate/animate.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="css/common.css">
-      <link rel="stylesheet" media="screen and (min-width: 600px)" href="css/high-resolution.css">
-      <link rel="stylesheet" media="screen and (max-width: 600px)" href="css/low-resolution.css">
+      <link rel="stylesheet" media="screen and (min-width: 800px)" href="css/high-resolution.css">
+      <link rel="stylesheet" media="screen and (max-width: 800px)" href="css/low-resolution.css">
       <script src="script.js"></script>
    </head>
    <body>
@@ -21,13 +20,12 @@
          <div class="header row">
             <div class="main">
                <div class="heading">New York Times</div>
-               <!-- Search bar -->
                <div class="form-group has-search">
                   <input type="text" class="form-control" placeholder="Search" oninput="filterContent()">
                </div>
             </div>
          </div>
-         <div class="row">
+         <div id="news-row" class="row">
             <div class="card col-md-7">
                <div id="featured" class="card-body">
                   <div class="subheading">Featured</div>

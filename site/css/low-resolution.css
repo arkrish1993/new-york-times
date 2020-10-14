@@ -1,0 +1,187 @@
+body {
+    font-family: 'Piazzolla', serif;
+}
+
+.header {
+    background-color: black;
+    color: white;
+}
+
+.heading {
+    font-family: 'Pacifico', cursive;
+    font-size: 5vw;
+    text-align: center;
+}
+
+#news-row {
+    flex-direction: column-reverse;
+}
+
+.subheading {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5vw;
+}
+
+.main {
+    width: 50%;
+    margin: 2vw auto;
+}
+
+.has-search {
+    margin-top: 2vw;
+    margin-bottom: 0;
+}
+
+.news {
+    box-shadow: 2px 2px lightgrey;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin-top: 2vw;
+    height: 26vw;
+    cursor: pointer;
+    padding-top: 1vw;
+}
+
+.news-title {
+    font-size: 2.5vw;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.featured-image {
+    float: left;
+    margin-right: 1vw;
+    margin-top: 1vw;
+    height: 18vw;
+}
+
+.news-content {
+    font-size: 2vw;
+    padding-top: 1vw;
+}
+
+#latest-data {
+    margin-top: 1vw;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+.latest-news {
+    padding: 0.5em;
+    box-shadow: 2px 2px lightgrey;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin-bottom: 2vw;
+    cursor: pointer;
+}
+
+.loading {
+	opacity: 0;
+	display: flex;
+	transform: translateX(-50%);
+	transition: opacity .3s ease-in;
+}
+
+.featured-loading, .latest-loading {
+    position: absolute;
+    top: 4vw;
+    right: 0%;
+}
+
+.loading.show {
+	opacity: 1;
+}
+
+.ball {
+    background-color: #777;
+    border-radius: 50%;
+    margin: 7px;
+    height: 7px;
+    width: 7px;
+    animation: jump .5s ease-in infinite;
+}
+
+.ball:nth-of-type(2) {
+	animation-delay: 0.1s;
+}
+
+.ball:nth-of-type(3) {
+	animation-delay: 0.2s;
+}
+
+@keyframes jump {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.no-records {
+    margin-top: 1vw;
+}
+
+.overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	background-color: rgb(255, 255, 255) rgb(0, 0, 0);
+	background-color: rgba(255, 255, 255, 0.9);
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.overlay-content {
+	position: relative;
+    width: 100%;
+}
+
+.overlay a.closebtn {
+    padding: 1vw;
+    text-decoration: none;
+    font-size: 4vw;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+    font-family: 'Pacifico', cursive;
+    margin-left: 10%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0vw;
+}
+
+.details-div {
+    border: 1px solid lightgray;
+    width: 80%;
+    margin-left: 10%;
+    box-shadow: 2px 2px lightgrey;
+    padding: 1vw;
+}
+
+.details-byline {
+    text-align: end;
+    font-style: italic;
+}
+
+.details-image {
+    height: 40vw;
+    margin-left: 10%;
+    margin-top: 2vw;
+}
+
+.details-header {
+    font-family: 'Pacifico', cursive;
+}
